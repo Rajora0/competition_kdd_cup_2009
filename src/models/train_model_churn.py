@@ -29,7 +29,7 @@ def main(test_size, model_name):
     }
 
     # Create the GridSearchCV object
-    grid_search = GridSearchCV(estimator=base_model, param_grid=param_grid, scoring='roc_auc', cv=5, n_jobs=-1, verbose=0)
+    grid_search = GridSearchCV(estimator=base_model, param_grid=param_grid, scoring='roc_auc', cv=5, n_jobs=-1, verbose=3)
 
     # Perform model tuning
     start_time = time.time()

@@ -34,19 +34,19 @@ def keep_vars(features, sum_importances, threshold):
 def main(input_data, output_model):
     # Carregar dados
     features = pd.read_csv(input_data)
-    outcome_appetency = pd.read_csv('../../data/raw/orange_small_train_appetency.labels', header=None).rename(columns={0: 'Appetency'})
+    outcome_upselling = pd.read_csv('../../data/raw/orange_small_train_upselling.labels', header=None).rename(columns={0: 'Upselling'})
     
     # Preprocessamento
-    features_a = pd.get_dummies(features)
-    variables, importances = etc_importances(features_a, outcome_appetency)
+    features_u = pd.get_dummies(features)
+    variables, importances = etc_importances(features_u, outcome_upselling)
     sum_importances = function_sum_importances(variables, importances)
-    features_a = keep_vars(features_a, sum_importances, threshold=0.99)
-    preprocessed_data = pd.concat([features_a, outcome_appetency], axis=1)
+    features_u = keep_vars(features_u, sum_importances, threshold=0.99)
+    preprocessed_data = pd.concat([features_u, outcome_upselling], axis=1)
     preprocessed_data = pd.get_dummies(preprocessed_data, dtype=int)
     
     # Dividir os dados
-    X = preprocessed_data.drop('Appetency', axis=1)
-    y = preprocessed_data['Appetency']
+    X = preprocessed_data.drop('Upselling', axis=1)
+    y = preprocessed_data['Upselling']
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
     
     # Treinar modelo
@@ -71,7 +71,7 @@ def main(input_data, output_model):
     print("Test ROC AUC score:", test_roc_auc)
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Appetency Prediction")
+    parser = argparse.ArgumentParser(description="Upselling Prediction")
     parser.add_argument("--input_data", type=str, help="Path to input data")
     parser.add_argument("--output_model", type=str, help="Path to save trained model")
     args = parser.parse_args()

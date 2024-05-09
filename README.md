@@ -44,7 +44,9 @@ Project Organization
     │   ├── models         <- Scripts to train models and then use trained models to make
     │   │   │                 predictions
     │   │   ├── predict_model.py
-    │   │   └── train_model.py
+    │   │   ├── train_model_churn.py
+    │   │   ├── train_model_appetency.py
+    │   │   └── train_model_upselling.py
     │   │
     │   └── visualization  <- Scripts to create exploratory and results oriented visualizations
     │       └── visualize.py
@@ -53,5 +55,8 @@ Project Organization
 
 
 --------
+
+To execute the same experiment, you should pay attention to the environment file, environment.yml, to install the required Python packages in a virtual environment using pip, or recreate the conda environment. The main notebook covers the entire project, but we can still use the scripts in 'src/models/' to run the models. Inside the models directory, there is a file explaining how to run them from the command line.
+
 
 <p><small>Project based on the <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>. #cookiecutterdatascience</small></p>
